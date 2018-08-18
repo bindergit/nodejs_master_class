@@ -10,7 +10,7 @@
  var fs = require('fs');
 
  // load the greeting
- var greeting = fs.readFileSync('greeting');
+ var greeting = fs.readFileSync('greeting','utf8');
  // Create the server
  var httpServer = http.createServer(function(req,res){
         // Parse the url
@@ -19,15 +19,17 @@
         // Get the path
         var path = parsedUrl.pathname;
         var trimmedPath = path.replace(/^\/+|\/+$/g, '');
-        //trimmedPath = trimmedPath.toLowerCase();
+
+        res.setHeader('Content-Type', 'application/json');
 
         if (trimmedPath.toLowerCase() === 'hello') {
-            res.end(greeting);    
+            res.end(JSON.stringify(greeting));    
         } else {
             res.end();
         };
  
 });
+var obj = {};
 // Lesten on port
 httpServer.listen(3000,function(){
 console.log("The server is listening on port 3000");
