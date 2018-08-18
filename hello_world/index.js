@@ -19,7 +19,7 @@
         // Get the path
         var path = parsedUrl.pathname;
         var trimmedPath = path.replace(/^\/+|\/+$/g, '');
-
+        
         res.setHeader('Content-Type', 'application/json');
 
         if (trimmedPath.toLowerCase() === 'hello') {
@@ -29,8 +29,8 @@
         };
  
 });
-var obj = {};
-// Lesten on port
+
+// Listen on port
 httpServer.listen(3000,function(){
 console.log("The server is listening on port 3000");
 });
